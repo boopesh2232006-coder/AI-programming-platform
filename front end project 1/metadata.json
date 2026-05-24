@@ -1,0 +1,7 @@
+{
+  "name": "InclusiAssess: AI-Driven Skill Ecosystem",
+  "description": "An inclusive, AI-powered assessment platform focusing on adaptive learning and accessibility for the Java skill ecosystem.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

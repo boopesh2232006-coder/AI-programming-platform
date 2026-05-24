@@ -1,0 +1,38 @@
+Python Performance Topic Expansion - Add 8 more videos
+
+Current: 2 videos
+Target: 10 videos
+
+Additional videos to add:
+3. "Timing and Benchmarking", "https://www.youtube.com/watch?v=iG6fr81xHKA", "14:20"
+4. "Algorithm Optimization", "https://www.youtube.com/watch?v=0DjBuwxYGcw", "19:30"
+5. "Memory Optimization", "https://www.youtube.com/watch?v=XVv6mJpFOb0", "16:45"
+6. "Caching Strategies", "https://www.youtube.com/watch?v=ormHNnVhxL4", "15:50"
+7. "NumPy Performance", "https://www.youtube.com/watch?v=qz0aGYrrlMU", "18:20"
+8. "Parallel Processing", "https://www.youtube.com/watch?v=kRH8reP4LAI", "17:40"
+9. "Bottleneck Analysis", "https://www.youtube.com/watch?v=1Rs2ND1ryYc", "14:15"
+10. "Best Practices", "https://www.youtube.com/watch?v=JV39ztn0qFA", "16:30"
+
+Python Async Programming Topic Expansion - Add 8 more videos
+
+Current: 2 videos
+Target: 10 videos
+
+Additional videos:
+3. "Event Loop", "https://www.youtube.com/watch?v=XVv6mJpFOb0", "15:30"
+4. "Concurrent Tasks", "https://www.youtube.com/watch?v=ormHNnVhxL4", "16:45"
+5. "Tasks and Futures", "https://www.youtube.com/watch?v=PkZNo7MFNFg", "14:20"
+6. "Async Context Managers", "https://www.youtube.com/watch?v=UB1nLW6yNrM", "13:50"
+7. "Exception Handling", "https://www.youtube.com/watch?v=y17RuWkWdn8", "15:15"
+8. "Web Requests with Aiohttp", "https://www.youtube.com/watch?v=F3odgpghXzY", "17:40"
+9. "Debugging Async Code", "https://www.youtube.com/watch?v=DvZ2Z1j3PZQ", "16:25"
+10. "Performance Considerations", "https://www.youtube.com/watch?v=V_Kr9OSfDeU", "18:10"
+
+Python Web Scraping - Add 8 more videos
+Python Data Science - Add 8 more videos
+
+Current structure: Each Python topic has 2 videos
+Target: Each Python topic has 10 videos
+Total Python topics: 12+ (Basics, Functions, OOP, File Handling, Exception Handling, Data Structures, List Comprehension, Decorators, Generators, Testing, Performance, Async Programming, Web Scraping, Data Science)
+
+This requires substantial additions to the topicVideos object in gemini.ts
