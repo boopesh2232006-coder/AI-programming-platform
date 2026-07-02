@@ -1342,7 +1342,7 @@ const getYouTubeId = (url: string): string | null => {
 };
 
 const VideoCard = ({ video, isBookmarked, onBookmark, darkMode }: { 
-  video: { title: string; url: string; duration: string; unit: string; topic: string }; 
+  video: { title: string; url: string; duration: string; unit: string; topic: string; language?: string }; 
   isBookmarked?: boolean;
   onBookmark?: (v: any) => void;
   darkMode?: boolean;
@@ -1380,6 +1380,11 @@ const VideoCard = ({ video, isBookmarked, onBookmark, darkMode }: {
             <span className="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] px-2 py-1 rounded font-mono font-bold">
               {video.duration}
             </span>
+            {video.language && (
+              <span className="absolute top-2 left-2 bg-indigo-600/90 text-white text-[10px] px-2 py-1 rounded font-bold">
+                {video.language}
+              </span>
+            )}
           </>
         )}
       </div>
@@ -1410,11 +1415,12 @@ const VideoLearningCenter = ({ onBack, bookmarks, onBookmark, darkMode }: { onBa
   const [selectedUnit, setSelectedUnit] = useState<string>('Java Fundamentals');
   const [selectedTopic, setSelectedTopic] = useState<string>('Core Concepts');
   const [search, setSearch] = useState('');
+  const [videoLanguage, setVideoLanguage] = useState<'English' | 'Tamil'>('English');
   
   const units = getAllUnits();
   const currentUnitVideos = topicVideos[selectedUnit as keyof typeof topicVideos] || {};
   const topics = Object.keys(currentUnitVideos);
-  const videos = getVideosByTopic(selectedUnit, selectedTopic) as Array<{ title: string; url: string; duration: string; unit: string; topic: string }>;
+  const videos = getVideosByTopic(selectedUnit, selectedTopic, videoLanguage) as Array<{ title: string; url: string; duration: string; unit: string; topic: string; language?: string }>;
 
   const filteredVideos = videos.filter(v => v.title.toLowerCase().includes(search.toLowerCase()));
 
@@ -1442,15 +1448,40 @@ const VideoLearningCenter = ({ onBack, bookmarks, onBookmark, darkMode }: { onBa
           </div>
         </div>
 
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <input 
-            type="text" 
-            placeholder="Search in this topic..." 
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className={`pl-12 pr-6 py-3 rounded-2xl border-2 outline-none transition-all w-full md:w-80 ${darkMode ? 'bg-gray-900 border-gray-800 text-white focus:border-indigo-500' : 'bg-white border-gray-100 focus:border-indigo-400 shadow-sm'}`}
-          />
+        <div className="flex flex-col gap-3">
+          <div className="flex gap-2">
+            <button
+              onClick={() => setVideoLanguage('English')}
+              className={`px-4 py-2 rounded-2xl font-bold text-sm transition-all ${
+                videoLanguage === 'English'
+                  ? 'bg-indigo-600 text-white shadow-lg'
+                  : darkMode ? 'bg-gray-800 text-gray-400 hover:text-gray-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              English 🇬🇧
+            </button>
+            <button
+              onClick={() => setVideoLanguage('Tamil')}
+              className={`px-4 py-2 rounded-2xl font-bold text-sm transition-all ${
+                videoLanguage === 'Tamil'
+                  ? 'bg-indigo-600 text-white shadow-lg'
+                  : darkMode ? 'bg-gray-800 text-gray-400 hover:text-gray-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              தமிழ் 🇮🇳
+            </button>
+          </div>
+
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input 
+              type="text" 
+              placeholder="Search in this topic..." 
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className={`pl-12 pr-6 py-3 rounded-2xl border-2 outline-none transition-all w-full md:w-80 ${darkMode ? 'bg-gray-900 border-gray-800 text-white focus:border-indigo-500' : 'bg-white border-gray-100 focus:border-indigo-400 shadow-sm'}`}
+            />
+          </div>
         </div>
       </div>
 
@@ -1458,7 +1489,7 @@ const VideoLearningCenter = ({ onBack, bookmarks, onBookmark, darkMode }: { onBa
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Unit Selector */}
         <div className={`rounded-3xl border p-8 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100 shadow-sm'}`}>
-          <h2 className={`text-lg font-bold mb-4 uppercase tracking-widest text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Learning Unit</h2>
+          <h2 className={`text-lg font-bold mb-4 uppercase tracking-widest ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Learning Unit</h2>
           <div className="space-y-2">
             {units.map((unit) => (
               <button
@@ -1483,7 +1514,7 @@ const VideoLearningCenter = ({ onBack, bookmarks, onBookmark, darkMode }: { onBa
 
         {/* Topic Selector */}
         <div className={`rounded-3xl border p-8 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100 shadow-sm'}`}>
-          <h2 className={`text-lg font-bold mb-4 uppercase tracking-widest text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Specific Topic</h2>
+          <h2 className={`text-lg font-bold mb-4 uppercase tracking-widest ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Specific Topic</h2>
           <div className="space-y-2 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
             {topics.map((topic) => (
               <button
@@ -1746,7 +1777,7 @@ const InterviewPrepView = ({ darkMode }: { darkMode?: boolean }) => {
               key={t}
               whileHover={{ y: -5 }}
               onClick={() => startSession(t)}
-              className={`p-8 rounded-[2rem] border transition-all cursor-pointer group hover:shadow-2xl hover:shadow-indigo-100 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}
+              className={`p-8 rounded-4xl border transition-all cursor-pointer group hover:shadow-2xl hover:shadow-indigo-100 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}
             >
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${darkMode ? 'bg-gray-800' : 'bg-indigo-50'}`}>
                 <Mic className="w-7 h-7 text-indigo-600" />
@@ -1777,7 +1808,7 @@ const InterviewPrepView = ({ darkMode }: { darkMode?: boolean }) => {
         </span>
       </div>
 
-      <div className={`flex-1 overflow-y-auto mb-6 p-8 rounded-[2rem] border custom-scrollbar space-y-6 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}>
+      <div className={`flex-1 overflow-y-auto mb-6 p-8 rounded-4xl border custom-scrollbar space-y-6 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}>
         {history.map((msg, i) => (
           <motion.div 
             key={i}
@@ -1977,7 +2008,7 @@ const NotesView = ({ darkMode }: { darkMode?: boolean }) => {
         </div>
       </div>
 
-      <div className={`flex-1 flex flex-col rounded-[2rem] border overflow-hidden shadow-2xl ${darkMode ? 'bg-gray-950 border-gray-800' : 'bg-white border-gray-100'}`}>
+      <div className={`flex-1 flex flex-col rounded-4xl border overflow-hidden shadow-2xl ${darkMode ? 'bg-gray-950 border-gray-800' : 'bg-white border-gray-100'}`}>
         {/* Toolbar */}
         <div className={`h-12 border-b flex items-center justify-between px-4 shrink-0 ${darkMode ? 'border-gray-800 bg-gray-900/50' : 'border-gray-50 bg-gray-50/50'}`}>
           <div className="flex items-center gap-1">
@@ -2251,7 +2282,7 @@ const SkillInventoryView = ({ darkMode, results }: { darkMode?: boolean, results
         {/* Radar Chart Card */}
         <div className={`p-12 rounded-[3rem] border shadow-2xl flex items-center justify-center relative overflow-hidden ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}>
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500 rounded-full blur-[100px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-indigo-500 rounded-full blur-[100px]" />
           </div>
           
           <svg width={size} height={size} className="relative z-10 drop-shadow-2xl">

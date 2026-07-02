@@ -449,10 +449,83 @@ Format the response as Markdown.`;
   }
 }
 
-export function getVideosByTopic(unit: string, topic: string) {
-  const unitBundle = topicVideos[unit as keyof typeof topicVideos];
-  if (!unitBundle) return [];
-  return (unitBundle[topic as keyof typeof unitBundle] as Array<{ title: string; url: string; duration: string }> ) || [];
+// Tamil Language Videos
+export const tamilVideos = {
+  "Java Fundamentals": {
+    "Core Concepts": [
+      { title: "JVM ஆர்கிடெக்சர் விளக்கம்", url: "https://www.youtube.com/watch?v=fY3u_lB3jdg", duration: "15:32", language: "Tamil" },
+      { title: "Java தட்டெழுத்து மற்றும் வகுப்பு ஏற்றம்", url: "https://www.youtube.com/watch?v=vPm1aNVeX-s", duration: "18:20", language: "Tamil" },
+      { title: "JVM நினைவு மேலாண்மை", url: "https://www.youtube.com/watch?v=3X9zP0JmBPQ", duration: "22:15", language: "Tamil" }
+    ],
+    "Syntax": [
+      { title: "Java தொடரியல் அடிப்படைகள்", url: "https://www.youtube.com/watch?v=C-PZYjQHYkM", duration: "20:15", language: "Tamil" },
+      { title: "Java வகுப்புகள் மற்றும் பொருள்கள்", url: "https://www.youtube.com/watch?v=Z9m-w04qWiI", duration: "18:30", language: "Tamil" },
+      { title: "Java ஆபரேட்டர்கள்", url: "https://www.youtube.com/watch?v=aZY3qYMKqSY", duration: "13:50", language: "Tamil" }
+    ],
+    "Collections": [
+      { title: "Java சேகரணை மொத்த பார்வை", url: "https://www.youtube.com/watch?v=fLNcfAzH4uU", duration: "17:10", language: "Tamil" },
+      { title: "ArrayList vs LinkedList", url: "https://www.youtube.com/watch?v=kQ5gxBqYbwc", duration: "19:05", language: "Tamil" },
+      { title: "HashMap மற்றும் HashSet", url: "https://www.youtube.com/watch?v=Q1n89X1Vrvw", duration: "18:40", language: "Tamil" }
+    ]
+  },
+  "Data Structures & Algorithms": {
+    "Arrays": [
+      { title: "வரிசை தரவு கட்டமைப்பு அடிப்படைகள்", url: "https://www.youtube.com/watch?v=fWXZ0zGQ-6k", duration: "11:20", language: "Tamil" },
+      { title: "வரிசை செயல்பாடுகள் மற்றும் வழிமுறைகள்", url: "https://www.youtube.com/watch?v=SJvpChQ1Fuo", duration: "14:15", language: "Tamil" }
+    ],
+    "Linked Lists": [
+      { title: "இணைக்கப்பட்ட பட்டியல் விளக்கம்", url: "https://www.youtube.com/watch?v=qERAecZL0bc", duration: "15:45", language: "Tamil" },
+      { title: "ஒற்றை மற்றும் இரட்டை இணைக்கப்பட்ட பட்டியல்கள்", url: "https://www.youtube.com/watch?v=Bg6bx_l6bQ0", duration: "17:30", language: "Tamil" }
+    ]
+  },
+  "Python Programming": {
+    "Python Basics": [
+      { title: "Python அடிப்படைகள்", url: "https://www.youtube.com/watch?v=ZPR_3gPoGac", duration: "4:27:00", language: "Tamil" },
+      { title: "மாறிகள் மற்றும் தரவு வகைகள்", url: "https://www.youtube.com/watch?v=sKo5-R3LN3k", duration: "8:30", language: "Tamil" },
+      { title: "제어 प्रवाह", url: "https://www.youtube.com/watch?v=AHhJfS6Z0H0", duration: "12:45", language: "Tamil" }
+    ],
+    "Object-Oriented Programming": [
+      { title: "Python வகுப்புகள் மற்றும் பொருள்கள்", url: "https://www.youtube.com/watch?v=G8C1VrM1Azw", duration: "20:15", language: "Tamil" },
+      { title: "பரம்பரை மற்றும் பல்வேறுতை", url: "https://www.youtube.com/watch?v=0-YpvBdXAcs", duration: "18:30", language: "Tamil" }
+    ]
+  },
+  "Web Development": {
+    "HTML Basics": [
+      { title: "HTML அறிமுகம்", url: "https://www.youtube.com/watch?v=eTu8rPK2sTU", duration: "12:45", language: "Tamil" },
+      { title: "HTML ஆவணம் கட்டமைப்பு", url: "https://www.youtube.com/watch?v=gJWbzg4u1Kg", duration: "12:45", language: "Tamil" }
+    ],
+    "CSS Basics": [
+      { title: "CSS அடிப்படைகள்", url: "https://www.youtube.com/watch?v=7NYrLFKIyQQ", duration: "15:30", language: "Tamil" },
+      { title: "CSS Flexbox", url: "https://www.youtube.com/watch?v=tXrNEZXyNjw", duration: "15:30", language: "Tamil" }
+    ],
+    "JavaScript Basics": [
+      { title: "JavaScript அடிப்படைகள்", url: "https://www.youtube.com/watch?v=J2c0FN4JEsI", duration: "2:30:00", language: "Tamil" },
+      { title: "JavaScript DOM", url: "https://www.youtube.com/watch?v=UpKRfxzJKfg", duration: "2:30:00", language: "Tamil" }
+    ]
+  },
+  "JavaScript & TypeScript": {
+    "Modern JavaScript": [
+      { title: "ES6 அம்சங்கள்", url: "https://www.youtube.com/watch?v=bhGpUJQH-CQ", duration: "1:15:00", language: "Tamil" },
+      { title: "Async/Await மற்றும் உறுதிமொழிகள்", url: "https://www.youtube.com/watch?v=w-2wvJTGgLw", duration: "22:30", language: "Tamil" }
+    ]
+  }
+};
+
+export function getVideosByTopic(unit: string, topic: string, language: string = "English") {
+  let videos: Array<any> = [];
+  
+  if (language === "Tamil" && tamilVideos[unit as keyof typeof tamilVideos]) {
+    const unitBundle = tamilVideos[unit as keyof typeof tamilVideos];
+    videos = (unitBundle[topic as keyof typeof unitBundle] as Array<any>) || [];
+  } else {
+    // English videos - add language property
+    const unitBundle = topicVideos[unit as keyof typeof topicVideos];
+    if (!unitBundle) return [];
+    const englishVids = (unitBundle[topic as keyof typeof unitBundle] as Array<any>) || [];
+    videos = englishVids.map(v => ({ ...v, language: "English" }));
+  }
+  
+  return videos;
 }
 
 export async function getAdaptiveQuestion(previousPerformance: string, askedQuestions: string[] = []) {

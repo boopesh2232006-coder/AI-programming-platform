@@ -1,0 +1,10 @@
+{
+  "name": "project-one-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix \"./front end project 1\" run dev",
+    "build": "npm --prefix \"./front end project 1\" run build",
+    "preview": "npm --prefix \"./front end project 1\" run preview",
+    "lint": "npm --prefix \"./front end project 1\" run lint"
+  }
+}
