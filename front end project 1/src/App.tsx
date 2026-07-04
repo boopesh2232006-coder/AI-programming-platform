@@ -1458,7 +1458,7 @@ const VideoLearningCenter = ({ onBack, bookmarks, onBookmark, darkMode }: { onBa
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Unit Selector */}
         <div className={`rounded-3xl border p-8 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100 shadow-sm'}`}>
-          <h2 className={`text-lg font-bold mb-4 uppercase tracking-widest text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Learning Unit</h2>
+          <h2 className={`font-bold mb-4 uppercase tracking-widest text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Learning Unit</h2>
           <div className="space-y-2">
             {units.map((unit) => (
               <button
@@ -1483,7 +1483,7 @@ const VideoLearningCenter = ({ onBack, bookmarks, onBookmark, darkMode }: { onBa
 
         {/* Topic Selector */}
         <div className={`rounded-3xl border p-8 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100 shadow-sm'}`}>
-          <h2 className={`text-lg font-bold mb-4 uppercase tracking-widest text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Specific Topic</h2>
+          <h2 className={`font-bold mb-4 uppercase tracking-widest text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Specific Topic</h2>
           <div className="space-y-2 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
             {topics.map((topic) => (
               <button
@@ -1746,7 +1746,7 @@ const InterviewPrepView = ({ darkMode }: { darkMode?: boolean }) => {
               key={t}
               whileHover={{ y: -5 }}
               onClick={() => startSession(t)}
-              className={`p-8 rounded-[2rem] border transition-all cursor-pointer group hover:shadow-2xl hover:shadow-indigo-100 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}
+              className={`p-8 rounded-4xl border transition-all cursor-pointer group hover:shadow-2xl hover:shadow-indigo-100 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}
             >
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${darkMode ? 'bg-gray-800' : 'bg-indigo-50'}`}>
                 <Mic className="w-7 h-7 text-indigo-600" />
@@ -1777,7 +1777,7 @@ const InterviewPrepView = ({ darkMode }: { darkMode?: boolean }) => {
         </span>
       </div>
 
-      <div className={`flex-1 overflow-y-auto mb-6 p-8 rounded-[2rem] border custom-scrollbar space-y-6 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}>
+      <div className={`flex-1 overflow-y-auto mb-6 p-8 rounded-4xl border custom-scrollbar space-y-6 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}>
         {history.map((msg, i) => (
           <motion.div 
             key={i}
@@ -1977,7 +1977,7 @@ const NotesView = ({ darkMode }: { darkMode?: boolean }) => {
         </div>
       </div>
 
-      <div className={`flex-1 flex flex-col rounded-[2rem] border overflow-hidden shadow-2xl ${darkMode ? 'bg-gray-950 border-gray-800' : 'bg-white border-gray-100'}`}>
+      <div className={`flex-1 flex flex-col rounded-4xl border overflow-hidden shadow-2xl ${darkMode ? 'bg-gray-950 border-gray-800' : 'bg-white border-gray-100'}`}>
         {/* Toolbar */}
         <div className={`h-12 border-b flex items-center justify-between px-4 shrink-0 ${darkMode ? 'border-gray-800 bg-gray-900/50' : 'border-gray-50 bg-gray-50/50'}`}>
           <div className="flex items-center gap-1">
@@ -2251,7 +2251,7 @@ const SkillInventoryView = ({ darkMode, results }: { darkMode?: boolean, results
         {/* Radar Chart Card */}
         <div className={`p-12 rounded-[3rem] border shadow-2xl flex items-center justify-center relative overflow-hidden ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}>
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500 rounded-full blur-[100px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-indigo-500 rounded-full blur-[100px]" />
           </div>
           
           <svg width={size} height={size} className="relative z-10 drop-shadow-2xl">

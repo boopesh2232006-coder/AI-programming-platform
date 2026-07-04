@@ -1,5 +1,5 @@
 {
-  "name": "project-one-root",
+  "name": "ai-programming-platform",
   "private": true,
   "scripts": {
     "dev": "npm --prefix \"./front end project 1\" run dev",
